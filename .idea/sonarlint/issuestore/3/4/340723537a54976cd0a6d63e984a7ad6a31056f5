@@ -1,0 +1,14 @@
+
+Щ"squid:ClassVariableVisibilityCheck"_Make FACEBOOK_APP_SECRET a static final constant or non-public and provide accessors if needed.(х═Т╬¤    8езв┼╘-
+╟%squid:RedundantThrowsDeclarationCheck"ЙRemove the declaration of thrown exception 'org.apache.http.client.ClientProtocolException' which is a subclass of 'java.io.IOException'.(╝░┤т√    8езв┼╘-
+xsquid:S3008"ZRename this field "FACEBOOK_APP_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(┼Ичи8езв┼╘-
+Zsquid:S1444"=Make this "public static FACEBOOK_LINK_GET_TOKEN" field final(хБ╬S8езв┼╘-
+Гsquid:S3008"`Rename this field "FACEBOOK_REDIRECT_URL" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(╞├Ч╤°    8езв┼╘-
+Ы"squid:ClassVariableVisibilityCheck"aMake FACEBOOK_REDIRECT_URL a static final constant or non-public and provide accessors if needed.(╞├Ч╤°    8езв┼╘-
+Ssquid:S1444"5Make this "public static FACEBOOK_APP_ID" field final(┼Ичи8езв┼╘-
+Р"squid:ClassVariableVisibilityCheck"[Make FACEBOOK_APP_ID a static final constant or non-public and provide accessors if needed.(┼Ичи8езв┼╘-
+Бsquid:S3008"^Rename this field "FACEBOOK_APP_SECRET" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(х═Т╬¤    8езв┼╘-
+squid:S3008"bRename this field "FACEBOOK_LINK_GET_TOKEN" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(хБ╬S8езв┼╘-
+Ч"squid:ClassVariableVisibilityCheck"cMake FACEBOOK_LINK_GET_TOKEN a static final constant or non-public and provide accessors if needed.(хБ╬S8езв┼╘-
+^squid:S1444";Make this "public static FACEBOOK_REDIRECT_URL" field final(╞├Ч╤°    8езв┼╘-
+\squid:S1444"9Make this "public static FACEBOOK_APP_SECRET" field final(х═Т╬¤    8езв┼╘-

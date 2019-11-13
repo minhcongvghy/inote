@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace=layout/head::head>
+    <meta charset="UTF-8">
+    <title>Create New Note</title>
+    <style th:replace="layout/head::style"></style>
+</head>
+<body>
+<div th:if="${user}">
+    <div class="login" sec:authorize="isAuthenticated()">
+        <span><a th:href="@{/view/__${user.id}__}" th:text="${user.username}"></a></span>|<a
+            th:href="@{/logout}">Logout</a>
+    </div>
+</div>
+<div th:replace="layout/select::select"></div>
+
+<div class="start">
+    <h1>Create new note</h1>
+    <th:block th:if="${message}">
+        <p th:text="${message}"></p>
+    </th:block>
+    <form th:action="@{/note/create}" th:object="${note}" method="post">
+        <div>
+            Title:
+            <input type="text" th:field="*{title}">
+        </div>
+        <div id="quillJS">
+            <div id="toolbar"></div>
+            <div id="editor"></div>
+            <input type="hidden" name="content" th:field="*{contentDelta}">
+            <input type="hidden" name="content" th:field="*{contentHtml}">
+        </div>
+        <div>
+            Note type:
+            <select th:field="*{noteType}">
+                <option th:each="p:${noteTypes}" th:value="${p.id}" th:text="${p.name}"></option>
+            </select>
+            <a th:href="@{/noteType/create/__${user.id}__}">new note type</a>
+        </div>
+        <div>
+            Tag:
+            <th:block th:each="tag:${tags}">
+                <div>
+                    <input type="checkbox" th:text="${tag.name}" th:value="${tag.id}" th:field="*{tags}">
+                </div>
+                </td>
+            </th:block>
+            <a th:href="@{/tag/create/__${user.id}__}">new tag</a>
+        </div>
+        <div>
+            <input type="submit" value="Create">
+        </div>
+
+    </form>
+</div>
+<script th:replace="layout/script::script"></script>
+</body>
+</html>

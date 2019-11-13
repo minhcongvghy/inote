@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/head::head">
+    <meta charset="UTF-8">
+    <title>Delete Note</title>
+    <style th:replace="layout/head::style"></style>
+</head>
+<body>
+<div th:if="${user}">
+    <div class="login" sec:authorize="isAuthenticated()">
+        <span><a th:href="@{/view/__${user.id}__}" th:text="${user.username}"></a></span>|<a
+            th:href="@{/logout}">Logout</a>
+    </div>
+</div>
+<div th:replace="layout/select::select"></div>
+<div class="start">
+    <form th:action="@{/recycleBin/delete}" th:object="${trash}" method="post">
+        <input th:type="hidden" th:field="*{id}">
+        <table>
+            <tr>
+                <td>Title:</td>
+                <td th:text="${trash.title}"></td>
+            </tr>
+            <tr>
+                <td>Content:</td>
+                <td th:text="${trash.contentHtml}"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Delete"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

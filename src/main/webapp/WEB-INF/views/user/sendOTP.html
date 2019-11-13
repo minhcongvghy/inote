@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/head::head">
+    <meta charset="UTF-8">
+    <title>Send OTP</title>
+</head>
+<body>
+<div class="start">
+    <form th:action="@{/sendOTP}" method="post">
+        <input type="submit" value="Send SMS">
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/head::head">
+    <meta charset="UTF-8">
+    <title>View Tags</title>
+    <style th:replace="layout/head::style"></style>
+</head>
+<body>
+<div th:if="${user}">
+    <div class="login" sec:authorize="isAuthenticated()">
+        <span><a th:href="@{/view/__${user.id}__}" th:text="${user.username}"></a></span>|
+        <a th:href="@{/logout}">Logout</a>
+    </div>
+</div>
+<div th:replace="layout/select::select"></div>
+<div class="start">
+    <h1>Tag: <span th:text="${tag.name}"></span></h1>
+    <a th:href="@{/tag/edit/__${tag.id}__/__${user.id}__}">edit</a> |
+    <a th:href="@{/tag/delete/__${tag.id}__/__${user.id}__}">delete</a>
+    <table>
+        <tr>
+            <td>Title</td>
+        </tr>
+        <th:block th:each="note : ${notes}">
+                <div>
+                    <p th:text="${note.title}"></p>
+                </div>
+                <div>
+                    Content:
+                    <br>
+                    <textarea th:text="${note.contentHtml}" disabled="disabled"></textarea>
+                </div>
+        </th:block>
+    </table>
+</div>
+</body>
+</html>

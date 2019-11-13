@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/head::head">
+    <meta charset="UTF-8">
+    <title>Create New Tag</title>
+    <style th:replace="layout/head::style"></style>
+</head>
+<body>
+<div th:if="${user}">
+    <div class="login" sec:authorize="isAuthenticated()">
+        <span><a th:href="@{/view/__${user.id}__}" th:text="${user.username}"></a></span>|
+        <a th:href="@{/logout}">Logout</a>
+    </div>
+</div>
+<div th:replace="layout/select::select"></div>
+<div class="start">
+    <h1>Create</h1>
+    <th:block th:if="${message}">
+        <p th:text="${message}"></p>
+    </th:block>
+    <form th:action="@{/tag/create/}" th:object="${tag}" method="post">
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" th:field="*{name}"></td>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Create"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

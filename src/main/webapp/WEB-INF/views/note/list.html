@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/head::head">
+    <meta charset="UTF-8">
+    <title>List Note</title>
+    <style th:replace="layout/head::style"></style>
+</head>
+<body>
+<div th:if="${user}">
+    <div class="login" sec:authorize="isAuthenticated()">
+        <span><a th:href="@{/view/__${user.id}__}" th:text="${user.username}"></a></span>|<a
+            th:href="@{/logout}">Logout</a>
+    </div>
+</div>
+<div th:replace="layout/select::select"></div>
+<div class="start">
+    <h1>List Note</h1>
+    <div class="search">
+        <form class="searchTitle">
+            Search note by title:
+            <input type="text" name="search" class="form-control">
+            <input type="submit" value="Search" class="btn btn-info">
+        </form>
+    </div>
+    <div class="list">
+        <h5 style="margin: 10px"><span th:text="${notes.getTotalElements()}"></span> notes</h5>
+        <table>
+            <tr>
+                <td>Title</td>
+            </tr>
+            <th:block th:each="note : ${notes}">
+                <tr>
+                    <td th:cellpadding="3px" th:cellspacing="3px">
+                        <a th:href="@{/note/view/__${note.id}__/__${user.id}__}">
+                        <p th:text="${note.title}"></p></a></td>
+                    <td th:cellpadding="3px" th:cellspacing="3px">
+                        <a th:href="@{/note/edit/__${note.id}__/__${user.id}__}">edit</a></td>
+                    <td th:cellpadding="3px" th:cellspacing="3px">
+                        <a th:href="@{/note/delete/__${note.id}__/__${user.id}__}">X</a></td>
+                </tr>
+            </th:block>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/head::head">
+    <meta charset="UTF-8">
+    <title>Verify MobilePhone</title>
+</head>
+<body>
+<div class="start">
+    <form th:action="@{/verifyOTPSuccess}" th:object="${otp}" method="post">
+        <div>
+            Please wait! You will receive a message in minute
+        </div>
+        <div>
+            OTP:
+            <input type="text" placeholder="type your OTP in here" th:field="*{otp}">
+        </div>
+        <input type="submit" value="Verify">
+    </form>
+</div>
+</body>
+</html>

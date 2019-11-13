@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/head::head">
+    <meta charset="UTF-8">
+    <title>View Stack</title>
+    <style th:replace="layout/head::style"></style>
+</head>
+<body>
+<div th:if="${user}">
+    <div class="login" sec:authorize="isAuthenticated()">
+        <span><a th:href="@{/view/__${user.id}__}" th:text="${user.username}"></a></span>|<a
+            th:href="@{/logout}">Logout</a>
+    </div>
+</div>
+<div th:replace="layout/select::select"></div>
+<div class="start">
+    <h1>Stack: <span th:text="${stack.name}"></span></h1>
+    <a th:href="@{/stack/edit/__${stack.id}__/__${user.id}__}">edit</a> |
+    <a th:href="@{/stack/delete/__${stack.id}__/__${user.id}__}">delete</a>
+    <table>
+        <tr>
+            <td>NoteType Name</td>
+        </tr>
+        <th:block th:each="noteType : ${noteTypes}">
+            <tr>
+                <td><a th:href="@{/noteType/view/__${noteType.id}__/__${user.id}__}" th:text="${noteType.name}"></a></td>
+            </tr>
+        </th:block>
+    </table>
+</div>
+</body>
+</html>

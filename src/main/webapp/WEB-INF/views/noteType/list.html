@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/head::head">
+    <meta charset="UTF-8">
+    <title>NoteType List</title>
+    <style th:replace="layout/head::style"></style>
+</head>
+<body>
+<div th:if="${user}">
+    <div class="login" sec:authorize="isAuthenticated()">
+        <span><a th:href="@{/view/__${user.id}__}" th:text="${user.username}"></a></span>|<a
+            th:href="@{/logout}">Logout</a>
+    </div>
+</div>
+<div th:replace="layout/select::select"></div>
+<div class="start">
+    <a th:href="@{/noteType/create/__${user.id}__}">Create New NoteType</a>
+    <h1>NoteType List</h1>
+    <form>
+        Search by name:
+        <input type="text" name="search">
+        <input type="submit" value="Search">
+    </form>
+    <table>
+        <tr>
+            <td>Name</td>
+            <td>Edit</td>
+            <td>Delete</td>
+            <td>Stack</td>
+        </tr>
+        <th:block th:each="noteType : ${noteTypes}">
+            <tr>
+                <td><a th:href="@{/noteType/view/__${noteType.id}__/__${user.id}__}" th:text="${noteType.name}"></a></td>
+                <td><a th:href="@{/noteType/edit/__${noteType.id}__/__${user.id}__}">edit</a></td>
+                <td><a th:href="@{/noteType/delete/__${noteType.id}__/__${user.id}__}">delete</a></td>
+                <td th:text="${noteType.stack.name}"></td>
+            </tr>
+        </th:block>
+    </table>
+</div>
+</body>
+</html>

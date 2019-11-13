@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/head::head">
+    <meta charset="UTF-8">
+    <title>Tag List</title>
+    <style th:replace="layout/head::style"></style>
+
+</head>
+<body>
+<div th:if="${user}">
+    <div class="login" sec:authorize="isAuthenticated()">
+        <span><a th:href="@{/view/__${user.id}__}" th:text="${user.username}"></a></span>|<a
+            th:href="@{/logout}">Logout</a>
+    </div>
+</div>
+<div th:replace="layout/select::select"></div>
+<div class="start">
+    <a th:href="@{/tag/create/__${user.id}__}">Create New Tag</a>
+    <h1>Tags</h1>
+    <div class="search">
+        <form>
+            Search by name:
+            <input type="text" name="search">
+            <input type="submit" value="Search">
+        </form>
+    </div>
+    <table>
+        <tr>
+            <td>Name</td>
+        </tr>
+        <th:block th:each="tag : ${tags}">
+            <tr>
+                <td><a th:href="@{/tag/view/__${tag.id}__/__${user.id}__}" th:text="${tag.name}"></a></td>
+            </tr>
+            <tr>
+                <td><a th:href="@{/tag/edit/__${tag.id}__/__${user.id}__}">edit</a></td>
+            </tr>
+            <tr>
+                <td><a th:href="@{/tag/delete/__${tag.id}__/__${user.id}__}">delete</a></td>
+            </tr>
+        </th:block>
+    </table>
+</div>
+</body>
+</html>
